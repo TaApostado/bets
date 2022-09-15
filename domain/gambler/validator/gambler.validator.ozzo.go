@@ -13,7 +13,7 @@ import (
 )
 
 /*
-Bet validator implemented with ozzo-validation library (IBetValidator)
+Gambler validator implemented with ozzo-validation library (IGamblerValidator)
 
 Documentation of library available: https://github.com/go-ozzo/ozzo-validation
 */
