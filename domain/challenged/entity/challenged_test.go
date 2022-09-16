@@ -52,3 +52,39 @@ func TestCredits(t *testing.T) {
 	challenged, _ := NewChallenged(id, credits)
 	assert.Equal(t, credits, challenged.Credits())
 }
+
+func TestDeposit(t *testing.T) {
+	id := uuid.NewString()
+	credits := float32(89)
+	challenged, _ := NewChallenged(id, credits)
+	assert.Equal(t, credits, challenged.Credits())
+
+	err := challenged.Deposit(100)
+	assert.Nil(t, err)
+	credits += 100
+	assert.Equal(t, credits, challenged.Credits())
+
+	err = challenged.Deposit(-1)
+	assert.NotNil(t, err)
+	assert.Equal(t, credits, challenged.Credits())
+}
+
+func TestWithdraw(t *testing.T) {
+	id := uuid.NewString()
+	credits := float32(89)
+	challenged, _ := NewChallenged(id, credits)
+	assert.Equal(t, credits, challenged.Credits())
+
+	err := challenged.Withdraw(50)
+	assert.Nil(t, err)
+	credits -= 50
+	assert.Equal(t, credits, challenged.Credits())
+
+	err = challenged.Withdraw(-1)
+	assert.NotNil(t, err)
+	assert.Equal(t, credits, challenged.Credits())
+
+	err = challenged.Withdraw(credits + 1)
+	assert.NotNil(t, err)
+	assert.Equal(t, credits, challenged.Credits())
+}
