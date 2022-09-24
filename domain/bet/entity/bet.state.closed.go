@@ -1,6 +1,9 @@
 package entity
 
-import errs "github.com/TaApostado/bets/domain/bet/errors"
+import (
+	errs "github.com/TaApostado/bets/domain/bet/errors"
+	"github.com/TaApostado/bets/domain/gambler"
+)
 
 type Closed struct {
 	bet *Bet
@@ -24,4 +27,12 @@ func (state Closed) Deposit(amount float32) error {
 
 func (state Closed) Withdraw(amount float32) error {
 	return &errs.ErrCannotWithdraw
+}
+
+func (state Closed) AddGambler(gambler.IGambler) error {
+	return &errs.ErrCannotRegisterGamblerBetIsntOpen
+}
+
+func (state Closed) RemoveGambler(gambler.IGambler) error {
+	return &errs.ErrCannotUnregisterGamblerBetIsClosed
 }

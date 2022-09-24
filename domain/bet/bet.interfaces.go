@@ -13,6 +13,9 @@ type IState interface {
 
 	Deposit(float32) error
 	Withdraw(float32) error
+
+	AddGambler(gambler gambler.IGambler) error
+	RemoveGambler(gambler gambler.IGambler) error
 }
 
 type IBet interface {
@@ -34,6 +37,8 @@ type IBet interface {
 	ChangeName(name string) error
 	ChangeDescription(description string) error
 	ChangeValue(value float32) error
+	AddGambler(gambler.IGambler) error
+	RemoveGambler(gambler.IGambler) error
 
 	Deposit(float32) error
 	Withdraw(float32) error

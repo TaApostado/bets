@@ -342,6 +342,40 @@ func TestChangeValue(t *testing.T) {
 	assert.Equal(t, entity.value, validValue)
 }
 
+func TestAddGambler(t *testing.T) {
+	controller := gomock.NewController(t)
+	state := bet.NewMockIState(controller)
+	challenged := challenged.NewMockIChallenged(controller)
+
+	state.EXPECT().AddGambler(gomock.Any()).Return(errors.New("Some...")).MaxTimes(1)
+	entity, _ := NewBet(validId, validName, validDescription, challenged, validValue)
+	entity.state = state
+	err := entity.AddGambler(gambler.NewMockIGambler(controller))
+	assert.NotNil(t, err)
+	assert.Contains(t, err.Error(), "Some...")
+
+	state.EXPECT().AddGambler(gomock.Any()).Return(nil).AnyTimes()
+	err = entity.AddGambler(gambler.NewMockIGambler(controller))
+	assert.Nil(t, err)
+}
+
+func TestRemoveGambler(t *testing.T) {
+	controller := gomock.NewController(t)
+	state := bet.NewMockIState(controller)
+	challenged := challenged.NewMockIChallenged(controller)
+
+	state.EXPECT().AddGambler(gomock.Any()).Return(errors.New("Some...")).MaxTimes(1)
+	entity, _ := NewBet(validId, validName, validDescription, challenged, validValue)
+	entity.state = state
+	err := entity.AddGambler(gambler.NewMockIGambler(controller))
+	assert.NotNil(t, err)
+	assert.Contains(t, err.Error(), "Some...")
+
+	state.EXPECT().AddGambler(gomock.Any()).Return(nil).AnyTimes()
+	err = entity.AddGambler(gambler.NewMockIGambler(controller))
+	assert.Nil(t, err)
+}
+
 func TestDeposit(t *testing.T) {
 	controller := gomock.NewController(t)
 	challenged := challenged.NewMockIChallenged(controller)

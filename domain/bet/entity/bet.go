@@ -180,6 +180,14 @@ func (bet *Bet) ChangeValue(value float32) error {
 	return nil
 }
 
+func (bet *Bet) AddGambler(gambler gambler.IGambler) error {
+	return bet.state.AddGambler(gambler)
+}
+
+func (bet *Bet) RemoveGambler(gambler gambler.IGambler) error {
+	return bet.state.RemoveGambler(gambler)
+}
+
 func (bet *Bet) Deposit(amount float32) error {
 	err := bet.state.Deposit(amount)
 	if err != nil {

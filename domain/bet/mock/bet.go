@@ -36,6 +36,20 @@ func (m *MockIState) EXPECT() *MockIStateMockRecorder {
 	return m.recorder
 }
 
+// AddGambler mocks base method.
+func (m *MockIState) AddGambler(gambler gambler.IGambler) error {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "AddGambler", gambler)
+	ret0, _ := ret[0].(error)
+	return ret0
+}
+
+// AddGambler indicates an expected call of AddGambler.
+func (mr *MockIStateMockRecorder) AddGambler(gambler interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "AddGambler", reflect.TypeOf((*MockIState)(nil).AddGambler), gambler)
+}
+
 // ChangeDescription mocks base method.
 func (m *MockIState) ChangeDescription(description string) error {
 	m.ctrl.T.Helper()
@@ -90,6 +104,20 @@ func (m *MockIState) Deposit(arg0 float32) error {
 func (mr *MockIStateMockRecorder) Deposit(arg0 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Deposit", reflect.TypeOf((*MockIState)(nil).Deposit), arg0)
+}
+
+// RemoveGambler mocks base method.
+func (m *MockIState) RemoveGambler(gambler gambler.IGambler) error {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "RemoveGambler", gambler)
+	ret0, _ := ret[0].(error)
+	return ret0
+}
+
+// RemoveGambler indicates an expected call of RemoveGambler.
+func (mr *MockIStateMockRecorder) RemoveGambler(gambler interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "RemoveGambler", reflect.TypeOf((*MockIState)(nil).RemoveGambler), gambler)
 }
 
 // Withdraw mocks base method.
@@ -269,18 +297,18 @@ func (mr *MockIBetMockRecorder) Id() *gomock.Call {
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Id", reflect.TypeOf((*MockIBet)(nil).Id))
 }
 
-// IsClose mocks base method.
-func (m *MockIBet) IsClose() bool {
+// IsClosed mocks base method.
+func (m *MockIBet) IsClosed() bool {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "IsClose")
+	ret := m.ctrl.Call(m, "IsClosed")
 	ret0, _ := ret[0].(bool)
 	return ret0
 }
 
-// IsClose indicates an expected call of IsClose.
-func (mr *MockIBetMockRecorder) IsClose() *gomock.Call {
+// IsClosed indicates an expected call of IsClosed.
+func (mr *MockIBetMockRecorder) IsClosed() *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "IsClose", reflect.TypeOf((*MockIBet)(nil).IsClose))
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "IsClosed", reflect.TypeOf((*MockIBet)(nil).IsClosed))
 }
 
 // IsOpen mocks base method.
@@ -297,18 +325,18 @@ func (mr *MockIBetMockRecorder) IsOpen() *gomock.Call {
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "IsOpen", reflect.TypeOf((*MockIBet)(nil).IsOpen))
 }
 
-// IsSuspend mocks base method.
-func (m *MockIBet) IsSuspend() bool {
+// IsSuspended mocks base method.
+func (m *MockIBet) IsSuspended() bool {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "IsSuspend")
+	ret := m.ctrl.Call(m, "IsSuspended")
 	ret0, _ := ret[0].(bool)
 	return ret0
 }
 
-// IsSuspend indicates an expected call of IsSuspend.
-func (mr *MockIBetMockRecorder) IsSuspend() *gomock.Call {
+// IsSuspended indicates an expected call of IsSuspended.
+func (mr *MockIBetMockRecorder) IsSuspended() *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "IsSuspend", reflect.TypeOf((*MockIBet)(nil).IsSuspend))
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "IsSuspended", reflect.TypeOf((*MockIBet)(nil).IsSuspended))
 }
 
 // Name mocks base method.
